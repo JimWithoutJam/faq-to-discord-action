@@ -90,7 +90,7 @@ async function run() {
           ),
           `📰 [Read more](${readUrl})`,
         ].join("\n\n"),
-      };
+      } as const;
     })
   );
 
