@@ -49603,12 +49603,12 @@ function run() {
             }
             const path = path_1.parse(file.split("/").slice(6).join("/"));
             const readUrl = `${websiteBaseUrl}/faqs/${path.name}`;
-            core_1.debug(`Read url for ${file} is at: ${readUrl}`);
+            core_1.info(`\n\nRead url for ${file} is at: ${readUrl}`);
             return {
                 title,
                 readUrl,
                 description: [
-                    util_1.truncate(markdown.content, util_1.MAX_TRUNCATE_LENGTH, "..."),
+                    util_1.truncate(util_1.removeHintStyle(markdown.content), util_1.MAX_TRUNCATE_LENGTH, "..."),
                     `📰 [Read more](${readUrl})`,
                 ].join("\n\n"),
             };
@@ -49721,14 +49721,16 @@ run().catch((err) => {
 /***/ }),
 
 /***/ 2629:
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.headingToBold = exports.capitalize = exports.last = exports.countMessagesRequired = exports.truncate = exports.Color = exports.MAX_TRUNCATE_LENGTH = exports.MAX_INDICES_IN_AN_EMBED = void 0;
+exports.removeHintStyle = exports.headingToBold = exports.capitalize = exports.last = exports.countMessagesRequired = exports.truncate = exports.Color = exports.MAX_TRUNCATE_LENGTH = exports.MAX_INDICES_IN_AN_EMBED = void 0;
+const core_1 = __nccwpck_require__(2186);
 exports.MAX_INDICES_IN_AN_EMBED = 10;
 exports.MAX_TRUNCATE_LENGTH = 1700;
+const HINT_STYLE_REGEX = /{%.*?%}\n?/g;
 class Color {
     constructor() {
         this._next = 0;
@@ -49801,6 +49803,15 @@ function headingToBold(contents) {
     }, []);
 }
 exports.headingToBold = headingToBold;
+function removeHintStyle(content) {
+    var _a;
+    const trimmedStr = content.replace(HINT_STYLE_REGEX, "");
+    if ((_a = trimmedStr.match(HINT_STYLE_REGEX)) === null || _a === void 0 ? void 0 : _a.length) {
+        core_1.info("DAMN, regex still got matched");
+    }
+    return trimmedStr;
+}
+exports.removeHintStyle = removeHintStyle;
 
 
 /***/ }),

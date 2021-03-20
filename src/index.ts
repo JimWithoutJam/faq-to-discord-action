@@ -16,7 +16,7 @@ import {
   last,
   capitalize,
   headingToBold,
-  removeHintStyle
+  removeHintStyle,
 } from "./util";
 
 async function run() {
@@ -56,16 +56,41 @@ async function run() {
       const path = parse(file.split("/").slice(6).join("/"));
       const readUrl = `${websiteBaseUrl}/faqs/${path.name}`;
 
-      debug(`Read url for ${file} is at: ${readUrl}`);
+      info(`\n\nRead url for ${file} is at: ${readUrl}`);
+      // let content = removeHintStyle(markdown.content);
+      // if (content.match(/{%.*?%}\n?/g)?.length) {
+      //   info("DAMN, regex still got matched with content (1)");
+      // }
+
+      // const content = truncate(
+      //   removeHintStyle(markdown.content),
+      //   MAX_TRUNCATE_LENGTH,
+      //   "..."
+      // );
+      // if (content.match(/{%.*?%}\n?/g)?.length) {
+      //   info("Woot, regex still got matched with content (2)");
+      // }
+
+      // const description = [
+      //   truncate(removeHintStyle(markdown.content), MAX_TRUNCATE_LENGTH, "..."),
+      //   `📰 [Read more](${readUrl})`,
+      // ].join("\n\n");
+      // if (description.match(/{%.*?%}\n?/g)?.length) {
+      //   info("Oho, regex still got matched with content (3)");
+      // }
 
       return {
         title,
         readUrl,
         description: [
-          truncate(removeHintStyle(markdown.content), MAX_TRUNCATE_LENGTH, "..."),
+          truncate(
+            removeHintStyle(markdown.content),
+            MAX_TRUNCATE_LENGTH,
+            "..."
+          ),
           `📰 [Read more](${readUrl})`,
         ].join("\n\n"),
-      } as const;
+      };
     })
   );
 
