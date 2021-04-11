@@ -84,7 +84,7 @@ async function run() {
         `📰 [Read more](${readUrl})`,
       ].join("\n\n");
 
-      debug(
+      info(
         description
           ? `'****** desc length: ${description.length}`
           : "****** desc not found"
