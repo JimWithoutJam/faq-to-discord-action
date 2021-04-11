@@ -1,6 +1,6 @@
 {
   "name": "github-wiki-to-discord",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "repository": "git@github.com:indiainvestments/github-wiki-to-discord.git",
   "author": "zulien <zulien@example.com>",
