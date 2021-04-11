@@ -120,6 +120,12 @@ async function run() {
         `Resolving messages in the channel: ${channel.name} in ${channel.guild.name}`
       );
 
+      try {
+        channel.send(new MessageEmbed());
+      } catch (err) {
+        info(`--- ${err}`);
+      }
+
       const messages = await channel.messages.fetch({
         limit: 100, // Upper limit on number of messages can be fetched in one api call.
       });
