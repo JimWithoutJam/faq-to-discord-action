@@ -79,17 +79,21 @@ async function run() {
       //   info("Oho, regex still got matched with content (3)");
       // }
 
+      const description = [
+        truncate(removeHintStyle(markdown.content), MAX_TRUNCATE_LENGTH, "..."),
+        `📰 [Read more](${readUrl})`,
+      ].join("\n\n");
+
+      debug(
+        description
+          ? `'****** desc length: ${description.length}`
+          : "****** desc not found"
+      );
+
       return {
         title,
         readUrl,
-        description: [
-          truncate(
-            removeHintStyle(markdown.content),
-            MAX_TRUNCATE_LENGTH,
-            "..."
-          ),
-          `📰 [Read more](${readUrl})`,
-        ].join("\n\n"),
+        description,
       } as const;
     })
   );
