@@ -34,7 +34,8 @@ async function run() {
   const items = await Promise.all(
     files.map(async (file) => {
       const markdown = matter(readFileSync(file, "utf-8"));
-      info(`Processing: ${file}`);
+      info(`Processing: ${markdown.title}`);
+      info(`Processing: ${markdown.content}`);
 
       let title = capitalize(basename(file, extname(file)).replace("-", " "));
 
