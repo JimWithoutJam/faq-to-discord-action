@@ -20,6 +20,7 @@ import {
 } from "./util";
 
 async function run() {
+  info("STARTING ===============");
   const discordToken = getInput("discord_token");
   const discordChannel = getInput("discord_channel");
   const websiteBaseUrl = getInput("website_base_url");
