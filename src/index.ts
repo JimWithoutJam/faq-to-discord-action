@@ -56,7 +56,7 @@ async function run() {
       const path = parse(file.split("/").slice(6).join("/"));
       const readUrl = `${websiteBaseUrl}/faqs/${path.name}`;
 
-      info(`\n\nRead url for ${file} is at: ${readUrl}`);
+      // info(`\n\nRead url for ${file} is at: ${readUrl}`);
       // let content = removeHintStyle(markdown.content);
       // if (content.match(/{%.*?%}\n?/g)?.length) {
       //   info("DAMN, regex still got matched with content (1)");
