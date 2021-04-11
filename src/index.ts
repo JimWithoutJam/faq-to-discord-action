@@ -119,6 +119,8 @@ async function run() {
       info(
         `Resolving messages in the channel: ${channel.name} in ${channel.guild.name}`
       );
+      
+      info('to be sure');
 
       try {
         channel.send(new MessageEmbed());
@@ -150,7 +152,9 @@ async function run() {
           .fill(0)
           .map(() => channel.send(new MessageEmbed()));
 
+        info('await promises to resolve')
         const newMessages = await Promise.all(newMessagePromises);
+        info('\t resolved')
         debug(`${newMessages.length} messages sent.`);
 
         for (const newMessage of newMessages) {
