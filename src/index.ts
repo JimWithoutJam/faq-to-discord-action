@@ -107,6 +107,7 @@ async function run() {
   );
 
   discordClient.once("ready", async () => {
+    info('------ xpos ------');
     try {
       const channel = discordClient.channels.resolve(
         discordChannel
@@ -119,13 +120,13 @@ async function run() {
       info(
         `Resolving messages in the channel: ${channel.name} in ${channel.guild.name}`
       );
-      
+
       info('to be sure');
 
       try {
         channel.send(new MessageEmbed());
       } catch (err) {
-        info(`--- ${err}`);
+        debug(`--- ${err}`);
       }
 
       const messages = await channel.messages.fetch({
